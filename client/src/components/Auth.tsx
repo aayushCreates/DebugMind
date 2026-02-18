@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { X, Mail, Lock, User, Terminal } from "lucide-react";
 
 interface AuthModalType {
