@@ -8,6 +8,7 @@ const Navbar = () => {
   const [authType, setAuthType] = useState<"login" | "sign up">("login");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
+
   return (
     <>
       <nav className="w-full fixed top-0 left-0 z-50 backdrop-blur-md bg-[#050816]/70 border-b border-white/10">

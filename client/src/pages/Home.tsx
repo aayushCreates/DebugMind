@@ -1,8 +1,12 @@
 import { CheckCircle, Play, ArrowRight, Circle } from "lucide-react";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
     <section className="min-h-screen w-full pt-20 bg-gradient-to-br from-[#070a1a] via-[#0b0e1b] to-[#081029] text-white">
+
+      <Navbar />
+      
       <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
         {/* LEFT SIDE */}
         <div>
