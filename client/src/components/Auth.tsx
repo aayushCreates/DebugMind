@@ -39,11 +39,11 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-md mx-4 bg-gradient-to-br from-[#0B1026] to-[#0F1B3D] border border-white/10 rounded-2xl shadow-2xl p-8 text-white animate-fadeIn">
+      <div className="relative w-full max-w-md mx-4 bg-gradient-to-br from-[#080b18] to-[#0a1228] border border-white/10 rounded-xl shadow-2xl px-5 py-5 text-white animate-fadeIn">
         {/* Close */}
         <button
           onClick={onClose}
@@ -53,7 +53,7 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
         </button>
 
         {/* Logo */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3 mb-5">
           <div className="w-10 h-10 rounded-md bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
             <span className="text-xl font-bold"><Terminal /></span>
           </div>
@@ -61,7 +61,7 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
         </div>
 
         {/* Heading */}
-        <h3 className="text-3xl font-bold mb-2">
+        <h3 className="text-3xl font-bold mb-1">
           {modalType === "login" ? "Welcome Back" : "Create Account"}
         </h3>
         <p className="text-gray-400 mb-8">
@@ -71,11 +71,11 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
         </p>
 
         {/* Form */}
-        <form className="space-y-6">
+        <form className="space-y-4">
           {modalType === "sign up" && (
             <div>
-              <label className="block text-sm mb-2 text-gray-300">Name</label>
-              <div className="flex items-center bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus-within:border-blue-500 transition">
+              <label className="block text-sm mb-1 text-gray-300">Name</label>
+              <div className="flex items-center bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus-within:border-blue-500 transition">
                 <User size={18} className="text-gray-400 mr-3" />
                 <input
                   type="text"
@@ -88,8 +88,8 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
 
           {/* Email */}
           <div>
-            <label className="block text-sm mb-2 text-gray-300">Email</label>
-            <div className="flex items-center bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus-within:border-blue-500 transition">
+            <label className="block text-sm mb-1 text-gray-300">Email</label>
+            <div className="flex items-center bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus-within:border-blue-500 transition">
               <Mail size={18} className="text-gray-400 mr-3" />
               <input
                 type="email"
@@ -101,8 +101,8 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
 
           {/* Password */}
           <div>
-            <label className="block text-sm mb-2 text-gray-300">Password</label>
-            <div className="flex items-center bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus-within:border-blue-500 transition">
+            <label className="block text-sm mb-1 text-gray-300">Password</label>
+            <div className="flex items-center bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus-within:border-blue-500 transition">
               <Lock size={18} className="text-gray-400 mr-3" />
               <input
                 type="password"
@@ -115,10 +115,10 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
           {/* Confirm Password (sign up Only) */}
           {modalType === "sign up" && (
             <div>
-              <label className="block text-sm mb-2 text-gray-300">
+              <label className="block text-sm mb-1 text-gray-300">
                 Confirm Password
               </label>
-              <div className="flex items-center bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus-within:border-blue-500 transition">
+              <div className="flex items-center bg-black/40 border border-white/10 rounded-lg px-4 py-3 focus-within:border-blue-500 transition">
                 <Lock size={18} className="text-gray-400 mr-3" />
                 <input
                   type="password"
@@ -132,14 +132,14 @@ const AuthModal = ({ isOpen, onClose, mode }: AuthModalType) => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:opacity-90 transition font-semibold shadow-lg shadow-blue-500/20"
+            className="w-full py-3 rounded-md bg-gradient-to-r from-blue-500 to-indigo-600 hover:opacity-90 transition font-semibold shadow-lg shadow-blue-500/20 mt-3"
           >
             {modalType === "login" ? "Login" : "Create Account"}
           </button>
         </form>
 
         {/* Toggle modalType */}
-        <p className="text-center text-gray-400 text-sm mt-6">
+        <p className="text-center text-gray-400 text-sm mt-3">
           {modalType === "login" ? (
             <>
               Don't have an account?{" "}
