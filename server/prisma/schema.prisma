@@ -1,14 +1,93 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum ErrorInput {
+  TEXT
+  IMG
+}
+
+enum SolSource {
+  AI
+  DB
+  STACK_OVERFLOW
+}
+
+enum ErrorCategory {
+  SYNTAX
+  RUNTIME
+  DEPENDENCY
+  ENVIRONMENT
+  VERSION
+  NULL_REFERENCE
+  ASYNC
+  UNKNOWN
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  email    String @unique
+  password String
+
+  errors Error[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Error {
+  id              String     @id @default(uuid())
+  inputType       ErrorInput
+  rawInput        String
+  structuredInput Json
+
+  solutionId String
+  solution   Solution @relation(fields: [solutionId], references: [id])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Solution {
+  id String @id @default(uuid())
+
+  errorSummary    String
+  rootCause       String
+  confidenceScore Int
+
+  language       String
+  errorType      String
+  category       ErrorCategory
+  errorSignature String        @unique
+
+  suggestedFixes SuggestedFix[]
+  errors         Error[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([language, errorType])
+}
+
+model SuggestedFix {
+  id                 String    @id @default(uuid())
+  steps              String
+  reason             String
+  fixConfidenceScore Int
+  totalRetry         Int       @default(1)
+  solutionSource     SolSource
+
+  solutionId String
+  solution   Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
